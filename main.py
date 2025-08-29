@@ -7,7 +7,10 @@ from flask_cors import CORS  # allow React to call Flask
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": [
+    "http://localhost:3000",   # local React dev
+    "https://face-emotion-frontend.vercel.app"  # deployed React on Vercel
+]}})
 
 # Load the trained model
 model = load_model('facial_emotion_detection_model.h5')
