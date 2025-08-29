@@ -59,6 +59,11 @@ def predict():
         "emotion": emotion,
         "confidence": confidence
     })
+@app.route('/static/uploads/<filename>')
+def uploaded_file(filename):
+    response = send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
